@@ -147,6 +147,7 @@ static inline bool omap_dma_filter_fn(struct dma_chan *c, void *d)
 #define IS_WORD_16			BIT(0xd)
 #define ENABLE_16XX_MODE		BIT(0xe)
 #define HS_CHANNELS_RESERVED		BIT(0xf)
+#define DMA_ENGINE_HANDLE_IRQ		BIT(0x10)
 
 /* Defines for DMA Capabilities */
 #define DMA_HAS_TRANSPARENT_CAPS	(0x1 << 18)
