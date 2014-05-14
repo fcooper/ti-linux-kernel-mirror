@@ -138,6 +138,18 @@
 				0x160 (PIN_INPUT | MUX_MODE7) /* spi0_cs1.gpio0_6 */
 			>;
 		};
+
+		pixcir_ts_pins: pixcir_ts_pins {
+			pinctrl-single,pins = <
+				0x44 (PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_a1.gpio1_17 */
+			>;
+		};
+
+		hdq_pins: pinmux_hdq_pins {
+			pinctrl-single,pins = <
+				0x234 (PIN_INPUT_PULLUP | MUX_MODE1)    /* cam1_wen.hdq_gpio */
+			>;
+		};
 	};
 
 	matrix_keypad: matrix_keypad@0 {
@@ -226,7 +238,9 @@
 	};
 
 	pixcir_ts@5c {
-		compatible = "pixcir,pixcir_ts";
+		compatible = "pixcir,pixcir_tangoc";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pixcir_ts_pins>;
 		reg = <0x5c>;
 		interrupt-parent = <&gpio1>;
 		interrupts = <17 0>;
@@ -234,7 +248,7 @@
 		attb-gpio = <&gpio1 17 GPIO_ACTIVE_HIGH>;
 
 		x-size = <1024>;
-		y-size = <768>;
+		y-size = <600>;
 	};
 };
 
@@ -366,4 +380,10 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&spi1_pins>;
 	status = "okay";
+};
+
+&hdq {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&hdq_pins>;
 };
