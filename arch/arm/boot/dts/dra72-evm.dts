@@ -56,6 +56,7 @@
 		interrupt-parent = <&gic>;
 		interrupt-controller;
 		#interrupt-cells = <2>;
+		ti,system-power-controller;
 
 		tps65917_pmic {
 			compatible = "ti,tps65917-pmic";
