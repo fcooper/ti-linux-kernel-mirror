@@ -325,6 +325,22 @@ static void tps65917_dt_to_pdata(struct i2c_client *i2c,
 
 static struct tps65917 *tps65917_dev;
 
+static void tps65917_power_off(void)
+{
+	int ret;
+
+	if (!tps65917_dev)
+		return;
+
+	ret = tps65917_update_bits(tps65917_dev, TPS65917_PMU_CONTROL_BASE,
+				   TPS65917_DEV_CTRL,
+				   TPS65917_DEV_CTRL_DEV_ON, 0);
+
+	if (ret)
+		pr_err("%s: Unable to write to DEV_CTRL_DEV_ON: %d\n",
+		       __func__, ret);
+}
+
 static const struct of_device_id of_tps65917_match_tbl[] = {
 	{
 		.compatible = "ti,tps65917",
@@ -479,8 +495,10 @@ no_irq:
 		ret = of_platform_populate(node, NULL, NULL, &i2c->dev);
 		if (ret < 0)
 			goto err_irq;
-		else if (pdata->pm_off && !pm_power_off)
+		else if (pdata->pm_off && !pm_power_off) {
 			tps65917_dev = tps65917;
+			pm_power_off = tps65917_power_off;
+		}
 	}
 
 	return ret;
