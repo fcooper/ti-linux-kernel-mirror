@@ -107,7 +107,7 @@
 					/* LDO1_OUT --> SDIO  */
 					regulator-name = "ldo1";
 					regulator-min-microvolt = <1800000>;
-					regulator-max-microvolt = <1800000>;
+					regulator-max-microvolt = <3300000>;
 					regulator-boot-on;
 				};
 
