@@ -925,6 +925,16 @@ config MFD_TPS65912_SPI
 	  If you say yes here you get support for the TPS65912 series of
 	  PM chips with SPI interface.
 
+config MFD_TPS65917
+	bool "TI TPS65917 series chips"
+	select MFD_CORE
+	select REGMAP_I2C
+	select REGMAP_IRQ
+	depends on I2C=y
+	help
+	  If you say yes here you get support for the TPS65917
+	  PMIC chips from Texas Instruments.
+
 config MFD_TPS80031
 	bool "TI TPS80031/TPS80032 Power Management chips"
 	depends on I2C=y
