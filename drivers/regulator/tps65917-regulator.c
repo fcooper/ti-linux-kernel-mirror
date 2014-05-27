@@ -344,6 +344,7 @@ static struct regulator_ops tps65917_ops_smps = {
 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
 	.list_voltage		= tps65917_list_voltage_smps,
 	.map_voltage		= tps65917_map_voltage_smps,
+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
 };
 
 static struct regulator_ops tps65917_ops_ext_control_smps = {
@@ -377,6 +378,7 @@ static struct regulator_ops tps65917_ops_ldo = {
 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
 	.list_voltage		= regulator_list_voltage_linear,
 	.map_voltage		= regulator_map_voltage_linear,
+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
 };
 
 static struct regulator_ops tps65917_ops_ext_control_ldo = {
@@ -747,6 +749,8 @@ static int tps65917_regulators_probe(struct platform_device *pdev)
 		pmic->desc[id].vsel_mask =
 				TPS65917_SMPS1_VOLTAGE_VSEL_MASK;
 
+		pmic->desc[id].ramp_delay = 2500;
+
 		/* Read the smps mode for later use. */
 		addr = tps65917_regs_info[id].ctrl_addr;
 		ret = tps65917_smps_read(pmic->tps65917, addr, &reg);
@@ -817,6 +821,11 @@ static int tps65917_regulators_probe(struct platform_device *pdev)
 							     tps65917_regs_info[id].ctrl_addr);
 			pmic->desc[id].enable_mask =
 					TPS65917_LDO1_CTRL_MODE_ACTIVE;
+			/*
+			 * To be confirmed. Discussion on going with PMIC Team.
+			 * It is of the order of ~60mV/uS.
+			 */
+			pmic->desc[id].ramp_delay = 2500;
 		} else {
 			pmic->desc[id].n_voltages = 1;
 			if (reg_init && reg_init->roof_floor)
