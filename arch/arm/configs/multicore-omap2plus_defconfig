@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm 3.14.23 Kernel Configuration
+# Linux/arm 3.14.24 Kernel Configuration
 #
 CONFIG_ARM=y
 CONFIG_MIGHT_HAVE_PCI=y
@@ -300,9 +300,6 @@ CONFIG_ARCH_MULTIPLATFORM=y
 #
 # CPU Core family selection
 #
-CONFIG_ARCH_MULTI_V6=y
-CONFIG_ARCH_MULTI_V7=y
-CONFIG_ARCH_MULTI_V6_V7=y
 # CONFIG_ARCH_MULTI_CPU_AUTO is not set
 # CONFIG_ARCH_MVEBU is not set
 # CONFIG_ARCH_BCM is not set
@@ -335,13 +332,6 @@ CONFIG_OMAP_DM_TIMER=y
 CONFIG_OMAP_PM_NOOP=y
 CONFIG_MACH_OMAP_GENERIC=y
 CONFIG_ARCH_OMAP=y
-CONFIG_ARCH_OMAP2=y
-CONFIG_ARCH_OMAP3=y
-CONFIG_ARCH_OMAP4=y
-CONFIG_SOC_OMAP5=y
-CONFIG_SOC_AM33XX=y
-CONFIG_SOC_AM43XX=y
-CONFIG_SOC_DRA7XX=y
 CONFIG_ARCH_OMAP2PLUS=y
 
 #
@@ -408,7 +398,6 @@ CONFIG_MACH_TI8148EVM=y
 #
 # Processor Type
 #
-CONFIG_CPU_V6=y
 CONFIG_CPU_V7=y
 CONFIG_CPU_32v6=y
 CONFIG_CPU_32v6K=y
@@ -475,7 +464,6 @@ CONFIG_TI_PRIV_EDMA=y
 # Kernel Features
 #
 CONFIG_HAVE_SMP=y
-CONFIG_SMP=y
 CONFIG_SMP_ON_UP=y
 CONFIG_ARM_CPU_TOPOLOGY=y
 # CONFIG_SCHED_MC is not set
@@ -3233,6 +3221,31 @@ CONFIG_STACKTRACE=n
 CONFIG_SCHED_DEBUG=n
 CONFIG_FTRACE=n
 CONFIG_ARM_UNWIND=n
+##################################################
+# TI SoCs supported by this release config options
+#
+# IMPORTANT NOTE: Always refer to the appropriate
+# Release Note for accurate information on the
+# specific SoC.
+##################################################
+
+# Supported ARM CPUs
+CONFIG_ARCH_MULTI_V6=n
+CONFIG_ARCH_MULTI_V7=y
+CONFIG_ARCH_MULTI_V6_V7=n
+CONFIG_CPU_V6=n
+
+# Enable CONFIG_SMP
+CONFIG_SMP=y
+
+# Supported SoCs
+CONFIG_ARCH_OMAP2=n
+CONFIG_ARCH_OMAP3=n
+CONFIG_ARCH_OMAP4=n
+CONFIG_SOC_OMAP5=y
+CONFIG_SOC_AM33XX=y
+CONFIG_SOC_AM43XX=y
+CONFIG_SOC_DRA7XX=y
 ##################################################
 # TI Power config options
 ##################################################
